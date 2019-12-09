@@ -2,6 +2,7 @@ package daoconfig;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.mysql.jdbc.Blob;
 import mapper.hzzdao;
 
 import java.lang.reflect.Field;
@@ -277,8 +278,7 @@ public class mysqldb implements hzzdao {
                 Map jObject = new HashMap();
                 for (int i = 1; i <= colnum; i++) {
                     String colname = rsmd.getColumnName(i);
-                    String colval = rs.getString(i);
-
+                    Blob colval = (Blob) rs.getBlob(i);
                     jObject.put(colname, colval);
                 }
                 jsonArray.add(jObject);
@@ -438,7 +438,7 @@ public class mysqldb implements hzzdao {
     }
 
     public String getnosqloneval(String sql, Object... wdata) {
-        // TODO Auto-generated method stub
+        //TODO Auto-generated method stub
         return null;
     }
 
